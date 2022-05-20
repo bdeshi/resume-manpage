@@ -1,0 +1,14 @@
+{
+  "name": "manpage-html",
+  "version": "0.0.1",
+  "license": "CC-BY-4.0",
+  "devDependencies": {
+    "@parcel/transformer-pug": "2.5.0",
+    "@parcel/transformer-sass": "2.5.0",
+    "parcel": "^2.5.0"
+  },
+  "scripts": {
+    "build": "parcel build index.pug",
+    "serve": "parcel watch index.pug"
+  }
+}
