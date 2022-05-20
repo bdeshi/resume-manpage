@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "parcel build index.pug",
-    "serve": "parcel watch index.pug"
+    "serve": "parcel serve index.pug",
+    "watch": "parcel watch index.pug"
   }
 }
