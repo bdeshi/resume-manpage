@@ -1,3 +1,20 @@
 -
-  var variable = 'value'
-include vars.local.pug
+  var first_name = '<fn>',
+      last_name = '<ln>',
+      site_url = 'http://localhost',
+      description = '<description>',
+      meta_description = "<meta-description>"
+  var section = 7,
+      section_name = 'Miscellaneous Information Manual',
+      name = first_name.toLowerCase() + '_' + last_name.toLowerCase()
+  var version = require('child_process').execSync('git rev-parse HEAD').toString().trim(),
+      short_version = version.substring(0, 7),
+      date = (new Date()).toDateString(),
+      year = (new Date()).getFullYear()
+  var contacts = {
+    'email': '<a href="mailto:<mail>"><mail></a>',
+    'pubkey': '<a href="assets/pubkey.asc">0x<fingerprint></a>',
+    'linkedin': '<a href="https://www.linkedin.com/in/<name>/"><name></a>',
+    'cell': '<span id="phone"><a href="tel:<phone>"><phone></a> <span id="phone-hint">/* please consider texting first? */</span></span>',
+  }
+  var source_link = 'https://<host>/<user>/<repo>/commit/' + version
