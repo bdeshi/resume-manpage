@@ -1,0 +1,89 @@
+
+$bg: #444444
+$mg: #222222
+$fg: #C8C8C8
+
+$dim: #A4A4A4
+$bright: #D8D8D8
+$dimmer: #888888
+$brighter: #FBFBFB
+
+$accent1: #98e2ff
+$accent2: #ffe655
+$accent3: #82cdff
+$accent4: #69f07b
+
+body
+  background-color: $bg
+  color: $fg
+.container
+  background-color: $bg
+.content
+  background-color: $mg
+  h1, h2, h3, h4, h5, h6
+    color: $brighter
+.main
+  .target:target
+    animation: 2s attention ease-out
+
+  .period
+    color: $dimmer
+header, footer
+  color: $dimmer
+
+.dark
+  color: $bg
+.dim
+  color: $dim
+.dimmer
+  color: $dimmer
+.bright
+  color: $bright
+.brighter
+  color: $brighter
+
+.main
+  b
+    color: $accent4
+  em
+    color: $accent1
+  h1
+    color: $fg
+  .description, .options
+    em
+      color: $accent1
+  .options b
+      color: $accent4
+  .synopsis
+    .desc > p > b
+      color: $accent4
+  .history
+    .job
+      color: $accent4
+
+.target a, a.target
+  text-decoration: none
+  border: none
+  color: inherit
+  &:visited
+    color: inherit
+  &:hover
+    color: inherit
+
+a
+  text-decoration: none
+  border-bottom: 1px dotted grey
+  color: inherit
+  &:visited
+    color: inherit
+  &:hover, &:focus
+    color: $accent2
+
+#phone-hint
+  color: $dimmer
+
+@keyframes attention
+  70%
+    color: $accent2
+  100%
+    color: auto

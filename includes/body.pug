@@ -1,0 +1,32 @@
+include /vars
+include /includes/mixins/page_id
+
+div.container
+  div.content
+
+    header
+      table
+        tr
+          td.left #[+page_id()]
+          td.center= section_name
+          td.right #[+page_id()]
+
+    section.main
+      block main-content
+        include ./sections/name
+        include ./sections/synopsis
+        include ./sections/description
+        include ./sections/options
+        include ./sections/history
+        include ./sections/recognition
+        include ./sections/contact
+        include ./sections/seealso
+        include ./sections/copyright
+
+    footer
+      table
+        tr
+          // .left Version #[a(href=source_link) #{short_version}]
+          td.left Version #{short_version}
+          td.center= date
+          td.right #[+page_id()]

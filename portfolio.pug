@@ -1,0 +1,37 @@
+include /vars
+doctype html
+head
+  meta(http-equiv="Content-Type" content="text/html;charset=UTF-8")
+  meta(http-equiv="X-UA-Compatible" content="IE=edge")
+  meta(name="viewport" content="width=device-width,initial-scale=1.0")
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon-16x16.png">
+  <link rel="manifest" href="./assets/site.webmanifest">
+  link(rel="stylesheet" href="assets/styles/index.sass")
+  title portfolio(7)
+body
+  div.container
+    div.content
+      header.header
+        .left portfolio(7)
+        .center= section_name
+        .right portfolio(7)
+      section.main
+        section#name
+          h1 name
+          .desc portfolio - projects by sammay_sarkar
+        section#description
+          h1 description
+          .desc
+            p This portfolio only lists personal hobby projects.
+            p Installing projects. Please check back later.
+        section#seealso
+          h1 see also
+          .desc
+            p
+              a(href="/") #[b sammay_sarkar](7)
+      footer.footer
+        .left Version #[a(href=source_link) #{version}]
+        .center= date
+        .right portfolio(7)

@@ -1,0 +1,14 @@
+audio#pronounce(controls=false preload="auto")
+  source(src="assets/media/spell.mp3" type="audio/mpeg")
+  source(src="assets/media/spell.ogg" type="audio/ogg")
+  source(src="assets/media/spell.wav" type="audio/wav")
+
+script.
+  function pronounce() {
+    var audio = document.getElementById('pronounce')
+    audio.play()
+  }
+
+section.name
+  h1.target#name: a(href="#name") name
+  .desc #[a(href='#' onclick="pronounce()") #{name}] - #{description}

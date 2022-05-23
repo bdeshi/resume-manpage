@@ -1,0 +1,6 @@
+section.contact
+  h1.target#contact: a(href="#contact") contact
+  .desc
+    ul
+      each value, method in contacts
+        li #{method}: #[em !{value}]

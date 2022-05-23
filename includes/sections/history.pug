@@ -1,0 +1,46 @@
+section.history
+  h1.target#history: a(href="#history") history
+  .desc
+    // p My professional employment summary with notable duties is listed below.
+    ul
+      li #[b.job DevOps Consultant] - #[em.org contract] #[span.period 2021-....]
+        ul
+          li adapting classic workloads to serverless architecture
+          li implementing modern logging and tracing solutions
+          li providing support for cloud devops processes
+
+      li #[b.job DevOps Engineer] - #[em.org Digital Healthcare Solutions] #[span.period 2021-....]
+        ul
+          li supervising kubernetes and classic server workloads
+          li in charge of cloud infrastructure administration
+          li managing ci/cd and deployment pipeline
+          li maintaining total monitoring stack
+
+      li #[b.job TechOps Engineer] - #[em.org Telenor Health] #[span.period 2020-2021]
+        ul
+          li provided application support services for engineering
+          li managed application performance monitoring
+          li provided support and service automation
+          li prepared service documentation
+
+      li #[b.job IT Engineer] - #[em.org Taurus] #[span.period 2018-2020]
+        ul
+          li maintained local network infrastructure and email service
+          li created digital service catalog and inventory systems
+          li implemented document management and backup systems
+
+      li #[b.job Programmer] - #[em.org freelance] #[span.period 2015-2018]
+        ul
+          li delivered system automation and scripting projects
+          li performed front-end web development and debugging
+          li created web APIs for data parsing and analysis
+    //-
+      li #[b.job Technician] - #[em.org community] #[span.period 2012-2015]
+        ul
+          li troubleshooting and resolving software problems
+          li computer hardware and software servicing
+          li operating system and software support
+
+      //- each history in histories
+      //-   li #[span.job #{history.job}] #[span.org #{history.org}]
+      //-     p #[span.works #{history.desc}]

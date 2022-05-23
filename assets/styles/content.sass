@@ -1,0 +1,50 @@
+@import 'variables'
+
+*
+  scroll-behavior: smooth
+
+a
+  cursor: pointer
+
+@media print
+  a.print:after
+    content: " (" attr(href) ") "
+    font-size: 50%
+
+.synopsis
+  .desc > p
+    // make command line wraps keep indent
+    margin: 0
+    margin-left: 4em
+    text-indent: -4em
+    @media (max-width: 600px)
+      margin-left: 2em
+      text-indent: -2em
+
+.options, .history
+  .desc > ul > li
+    list-style: none
+  .desc  li > .opt_desc
+    margin-left: 2em
+    @media (max-width: 600px)
+      margin-left: 1em
+    p
+      margin-top: 0
+
+.history
+  // .job
+  //   font-weight: bold
+  // .org
+  //   font-style: italic
+  .period
+    float: right
+    font-style: italic
+
+#phone-hint
+  visibility: hidden
+  opacity: 0
+#phone:hover
+  #phone-hint
+    opacity: inherit
+    visibility: inherit
+    transition: all 1s ease-out

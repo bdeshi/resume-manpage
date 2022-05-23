@@ -1,0 +1,24 @@
+@import 'variables'
+
+$font: 'IBM Plex Mono'
+$font_stack: $font, 'SF Mono', 'Liberation Mono', 'Consolas', monospace
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap')
+*
+  font-family: $font_stack
+
+body
+  font-size: $size
+
+h1, h2, h3, h4, h5, h6
+  font-size: $size + 2
+  text-transform: uppercase
+
+.header, .footer
+  // font-size: $size - 1
+  text-transform: uppercase
+  .center
+    text-transform: capitalize
+.footer
+  .left
+    text-transform: none
