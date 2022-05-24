@@ -1,0 +1,7 @@
+# https://woodpecker-ci.org/docs/intro
+
+pipeline:
+  build:
+    image: alpine:3
+    commands:
+      - echo "built!"
