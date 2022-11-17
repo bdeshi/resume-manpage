@@ -8,6 +8,8 @@ created with [pug][pug] and [sass][sass], build with [parcel][parcel].
 ## setup
 
 ```bash
+  # select node version
+$ nvm use
   # install dependencies
 $ yarn install
   # build the output
