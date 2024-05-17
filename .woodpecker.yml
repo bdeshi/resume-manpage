@@ -17,7 +17,6 @@ steps:
 
   - name: publish
     image: amazon/aws-cli:2.15.50
-    depends_on: [ build ]
     commands:
       - s3 cp --recursive ./dist s3://$${S3_BUCKET}/
       - cloudfront create-invalidation --distribution-id $${CLOUDFRONT_DISTRIBUTION} --paths '/*'
