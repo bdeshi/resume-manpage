@@ -13,6 +13,11 @@ output "cloudfront_distribution" {
   description = "ID of the created CloudFront distribution."
 }
 
+output "cloudfront_domain" {
+  value       = aws_cloudfront_distribution.created.domain_name
+  description = "domain name of the created CloudFront distribution."
+}
+
 output "acm_certificate_arn" {
   value       = aws_acm_certificate.created.arn
   description = "ARN of the created ACM certificate."
