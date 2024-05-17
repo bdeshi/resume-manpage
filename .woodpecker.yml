@@ -17,8 +17,8 @@ steps:
   - name: publish
     image: amazon/aws-cli:2.15.50
     commands:
-      - s3 cp --recursive ./dist s3://$${S3_BUCKET}/
-      - cloudfront create-invalidation --distribution-id $${CLOUDFRONT_DISTRIBUTION} --paths '/*'
+      - aws s3 cp --recursive ./dist s3://$${S3_BUCKET}/
+      - aws cloudfront create-invalidation --distribution-id $${CLOUDFRONT_DISTRIBUTION} --paths '/*'
     secrets:
       - S3_BUCKET
       - CLOUDFRONT_DISTRIBUTION
