@@ -9,7 +9,7 @@ steps:
     image: node:18
     when:
      - path:
-        exclude: ['meta/**']
+        exclude: ['_meta/**']
     commands:
       - yarn install
       - yarn build
