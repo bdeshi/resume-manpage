@@ -1,0 +1,38 @@
+# https://woodpecker-ci.org/docs/intro
+
+when:
+  event: [push, manual]
+  branch: main
+
+variables:
+  secrets: &secrets
+    - S3_BUCKET
+    - CLOUDFRONT_DISTRIBUTION
+    - AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY
+    - AWS_REGION
+
+
+steps:
+  - name: build/yarn
+    image: node:18
+    # when:
+    #  - path:
+    #     exclude: ['_meta/**']
+    commands:
+      - yarn install
+      - yarn build
+
+  - name: publish/s3
+    image: amazon/aws-cli:2.15.50
+    commands:
+      - aws s3 sync --delete ./dist s3://$${S3_BUCKET}/
+    secrets:
+      - <<: *secrets
+
+  - name: publish/cloudfront
+    image: amazon/aws-cli:2.15.50
+    commands:
+      - aws cloudfront create-invalidation --distribution-id $${CLOUDFRONT_DISTRIBUTION} --paths '/*'
+    secrets:
+      - <<: *secrets
