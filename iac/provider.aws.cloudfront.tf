@@ -3,7 +3,7 @@ data "aws_cloudfront_cache_policy" "caching_optimized" {
 }
 
 locals {
-  cloudfront_s3_origin_id = "s3origin"
+  cloudfront_s3_origin_id = "S3-${aws_s3_bucket.created.id}"
 }
 
 resource "aws_cloudfront_distribution" "created" {
@@ -42,7 +42,8 @@ resource "aws_cloudfront_distribution" "created" {
 }
 
 resource "aws_cloudfront_origin_access_control" "s3_access" {
-  name                              = "${var.domain_name}_s3"
+  name                              = "S3_${aws_s3_bucket.created.id}"
+  description                       = "S3:${aws_s3_bucket.created.id}"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
