@@ -18,11 +18,6 @@ output "acm_certificate_arn" {
   description = "ARN of the created ACM certificate."
 }
 
-output "acm_validation_options" {
-  value       = aws_acm_certificate.created.domain_validation_options
-  description = "ACM domain validation records."
-}
-
 output "iam_access_key_id" {
   value       = aws_iam_access_key.publisher.id
   description = "access key ID of the publisher IAM user."
