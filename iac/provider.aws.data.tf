@@ -1,5 +1,9 @@
 data "aws_caller_identity" "current" {}
 
+data "aws_kms_alias" "aws_s3" {
+  name = "alias/aws/s3"
+}
+
 data "aws_iam_policy_document" "s3_cloudfront_access" {
   statement {
     principals {

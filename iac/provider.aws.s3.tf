@@ -14,9 +14,10 @@ resource "aws_s3_bucket_public_access_block" "created" {
 resource "aws_s3_bucket_server_side_encryption_configuration" "created" {
   bucket = aws_s3_bucket.created.id
   rule {
+    bucket_key_enabled = true
     apply_server_side_encryption_by_default {
-      kms_master_key_id = "aws/s3"
-      sse_algorithm     = "aws:kms"
+      sse_algorithm = "AES256"
+      # kms_master_key_id = data.aws_kms_alias.aws_s3.arn
     }
   }
 }
