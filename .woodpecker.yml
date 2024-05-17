@@ -13,6 +13,7 @@ steps:
      - path:
         exclude: ['meta/**']
     commands:
+      - yarn install
       - yarn build
 
   - name: publish
