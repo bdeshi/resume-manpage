@@ -1,7 +1,29 @@
 # https://woodpecker-ci.org/docs/intro
 
-pipeline:
-  build:
-    image: alpine:3
+# https://woodpecker-ci.org/docs/intro
+
+when:
+  event: [push, manual]
+  branch: main
+
+steps:
+  - name: build
+    image: node:18-alpine
+    when:
+     - path:
+        exclude: ['meta/**']
     commands:
-      - echo "built!"
+      - yarn build
+
+  - name: publish
+    image: amazon/aws-cli:2.15.50
+    depends_on: [ build ]
+    commands:
+      - s3 cp --recursive ./dist s3://$${S3_BUCKET}/
+      - cloudfront create-invalidation --distribution-id $${CLOUDFRONT_DISTRIBUTION} --paths '/*'
+    secrets:
+      - S3_BUCKET
+      - CLOUDFRONT_DISTRIBUTION
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_REGION
