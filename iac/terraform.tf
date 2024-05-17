@@ -6,9 +6,13 @@ terraform {
       source  = "hashicorp/aws"
       version = "~>5.49.0"
     }
+    # woodpecker = {
+    #   source  = "adduc/woodpecker"
+    #   version = "~> 0.4.0"
+    # }
     woodpecker = {
-      source  = "adduc/woodpecker"
-      version = "~> 0.4.0"
+      source  = "Kichiyaki/woodpecker"
+      version = "~> 0.3.0"
     }
     gitea = {
       source  = "go-gitea/gitea"
