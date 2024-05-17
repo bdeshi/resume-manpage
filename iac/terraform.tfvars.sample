@@ -1,0 +1,5 @@
+domain_name                 = "sammay.sarkar.website"
+aws_tag_iac_project_name    = "resume-manpage"
+aws_tag_iac_project_subpath = "/iac"
+gitea_repo                  = "resume-manpage"
+woodpecker_secrets_events   = ["push", "deployment", "manual"]
