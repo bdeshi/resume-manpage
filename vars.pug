@@ -5,12 +5,10 @@
       site_url = 'https://sammay.sarkar.website',
       description = 'server magician',
       meta_description = "a self-taught tech professional with a strong background in system administration and general programming, with proven hands-on experience in modern DevOps, cloud, and IaC work areas."
+
   var section = 8,
       section_name = 'System Administration Manuals'
-  var version = require('child_process').execSync('git rev-parse HEAD').toString().trim(),
-      short_version = version.substring(0, 7),
-      date = (new Date()).toDateString()
-      year = (new Date()).getFullYear()
+
   var contacts = {
     'location': 'Dhaka, Bangladesh (GMT+6)',
     'email': '<a href="mailto:sammay@sarkar.website">sammay@sarkar.website</a>',
@@ -18,6 +16,7 @@
     'linkedin': '<a href="https://www.linkedin.com/in/sammay-sarkar/">sammay-sarkar</a>',
     'cell': '<span id="phone"><a href="tel:+8801622085295">+8801622085295</a> <span id="phone-hint">/* please consider texting first? */</span></span>'
   }
+
   var links = {
     'blog': '<a href="https://bdeshi.space">bdeshi.space</a>',
     'showcase': '<a href="/portfolio">/portfolio</a>',
@@ -26,7 +25,23 @@
     'telegram': '<a href="https://t.me/bdeshi">bdeshi</a>',
     'irc': 'bdeshi at libera.chat'
   }
+
   var monospace_font_css = "https://fonts.googleapis.com/css2?"
       + "family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700"
       + "display=swap"
-  var source_link = 'https://git.bdeshi.space/bdeshi/resume-manpage/commit/' + version
+
+  var source_link = (process.env.CI_REPO_URL ?
+        process.env.CI_REPO_URL : process.env.CI_PROJECT_URL ?
+        process.env.CI_PROJECT_URL : process.env.GITHUB_REPOSITORY ?
+        `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}` :
+        require('child_process').execSync('git remote get-url origin').
+        toString().replace(":", "/").replace("git@", "https://")
+      ),
+      version = (process.env.CI_COMMIT_SHA ?
+        process.env.CI_COMMIT_SHA : process.env.GITHUB_SHA ?
+        process.env.GITHUB_SHA :
+        require('child_process').execSync('git rev-parse HEAD').toString()
+      ),
+      short_version = version.substring(0, 7),
+      date = (new Date()).toDateString(),
+      year = (new Date()).getFullYear()
