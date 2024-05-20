@@ -4,6 +4,7 @@ when:
   event: [push, manual]
 
 variables:
+
   secrets: &secrets
     - S3_BUCKET
     - CLOUDFRONT_DISTRIBUTION
@@ -11,28 +12,35 @@ variables:
     - AWS_SECRET_ACCESS_KEY
     - AWS_REGION
 
-
-steps:
-  - name: cache/restore
+  cache: &cache_step
     image: meltwater/drone-cache:v1.4.0
     environment:
       AWS_ACCESS_KEY_ID:
         from_secret: CACHE_S3_ACCESS_KEY_ID
       AWS_SECRET_ACCESS_KEY:
         from_secret: CACHE_S3_SECRET_ACCESS_KEY
+
+  cache_settings: &cache_step_settings
+    path_style: true
+    cache_key: '{{ .Commit.Branch }}-{{ checksum "yarn.lock" }}'
+    archive_format: zstd
+    bucket:
+      from_secret: CACHE_S3_BUCKET
+    endpoint:
+      from_secret: CACHE_S3_ENDPOINT
+    region:
+      from_secret: CACHE_S3_REGION
+    mount:
+      - 'node_modules'
+
+
+steps:
+  - name: cache/restore
+    <<: *cache_step
     settings:
+      <<: *cache_step_settings
       restore: true
-      path_style: true
-      cache_key: '{{ .Commit.Branch }}-{{ checksum "yarn.lock" }}'
-      archive_format: zstd
-      bucket:
-        from_secret: CACHE_S3_BUCKET
-      endpoint:
-        from_secret: CACHE_S3_ENDPOINT
-      region:
-        from_secret: CACHE_S3_REGION
-      mount:
-        - 'node_modules'
+
 
   - name: build/yarn
     depends_on: [ cache/restore ]
@@ -43,25 +51,11 @@ steps:
 
   - name: cache/rebuild
     depends_on: [ build/yarn ]
-    image: meltwater/drone-cache:v1.4.0
-    environment:
-      AWS_ACCESS_KEY_ID:
-        from_secret: CACHE_S3_ACCESS_KEY_ID
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: CACHE_S3_SECRET_ACCESS_KEY
+    <<: *cache_step
     settings:
+      <<: *cache_step_settings
       rebuild: true
-      path_style: true
-      cache_key: '{{ .Commit.Branch }}-{{ checksum "yarn.lock" }}'
-      archive_format: zstd
-      bucket:
-        from_secret: CACHE_S3_BUCKET
-      endpoint:
-        from_secret: CACHE_S3_ENDPOINT
-      region:
-        from_secret: CACHE_S3_REGION
-      mount:
-        - 'node_modules'
+
 
   - name: publish/s3
     depends_on: [ build/yarn ]
