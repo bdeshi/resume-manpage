@@ -13,11 +13,55 @@ variables:
 
 
 steps:
+  - name: cache/restore
+    image: meltwater/drone-cache:v1.4.0
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: CACHE_S3_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: CACHE_S3_SECRET_ACCESS_KEY
+    settings:
+      restore: true
+      path_style: true
+      cache_key: '{{ .Commit.Branch }}-{{ checksum "yarn.lock" }}'
+      archive_format: gzip
+      bucket:
+        from_secret: CACHE_S3_BUCKET
+      endpoint:
+        from_secret: CACHE_S3_ENDPOINT
+      region:
+        from_secret: CACHE_S3_REGION
+      mount:
+        - 'node_modules'
+
   - name: build/yarn
+    depends_on: [ cache/restore ]
     image: node:18
     commands:
       - yarn install
       - yarn build
+
+  - name: cache/rebuild
+    depends_on: [ build/yarn ]
+    image: meltwater/drone-cache:v1.4.0
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: CACHE_S3_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: CACHE_S3_SECRET_ACCESS_KEY
+    settings:
+      rebuild: true
+      path_style: true
+      cache_key: '{{ .Commit.Branch }}-{{ checksum "yarn.lock" }}'
+      archive_format: gzip
+      bucket:
+        from_secret: CACHE_S3_BUCKET
+      endpoint:
+        from_secret: CACHE_S3_ENDPOINT
+      region:
+        from_secret: CACHE_S3_REGION
+      mount:
+        - 'node_modules'
 
   - name: publish/s3
     depends_on: [ build/yarn ]
