@@ -24,7 +24,7 @@ steps:
       restore: true
       path_style: true
       cache_key: '{{ .Commit.Branch }}-{{ checksum "yarn.lock" }}'
-      archive_format: gzip
+      archive_format: zstd
       bucket:
         from_secret: CACHE_S3_BUCKET
       endpoint:
@@ -53,7 +53,7 @@ steps:
       rebuild: true
       path_style: true
       cache_key: '{{ .Commit.Branch }}-{{ checksum "yarn.lock" }}'
-      archive_format: gzip
+      archive_format: zstd
       bucket:
         from_secret: CACHE_S3_BUCKET
       endpoint:
