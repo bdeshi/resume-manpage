@@ -48,7 +48,7 @@ resource "woodpecker_repository" "created" {
     data.gitea_repo.source.name
   ])
 
-  visibility = data.gitea_repo.source.private ? "public" : "private"
+  visibility = data.gitea_repo.source.private ? "private" : "public"
 }
 
 resource "woodpecker_repository_secret" "secrets" {
