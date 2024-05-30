@@ -1,2 +1,0 @@
-organization = "bdeshi-space"
-workspaces { prefix = "resume-manpage-" }
