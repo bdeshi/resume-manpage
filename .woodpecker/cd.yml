@@ -21,7 +21,6 @@ variables:
         from_secret: CACHE_S3_SECRET_ACCESS_KEY
 
   cache_settings: &cache_step_settings
-    path_style: true
     cache_key: '{{ .Commit.Branch }}-{{ checksum "yarn.lock" }}'
     archive_format: zstd
     bucket:
@@ -30,6 +29,8 @@ variables:
       from_secret: CACHE_S3_ENDPOINT
     region:
       from_secret: CACHE_S3_REGION
+    path_style:
+      from_secret: CACHE_S3_USE_PATH_STYLE
     mount:
       - 'node_modules'
 
