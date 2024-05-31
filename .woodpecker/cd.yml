@@ -27,7 +27,7 @@ variables:
         from_secret: CACHE_S3_SECRET_ACCESS_KEY
 
   cache_settings: &cache_settings
-    cache_key: '{{ .Commit.Branch }}/{{ checksum "yarn.lock" }}'
+    cache_key: '{{ checksum "yarn.lock" }}'
     archive_format: zstd
     bucket:
       from_secret: CACHE_S3_BUCKET
