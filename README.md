@@ -44,6 +44,12 @@ $ ls dist
 
 - `/meta/iac`: terraform iac config for the backend services hosting the rendered site.
 
+## deployment
+
+this project deploys to s3+cloudfront with woodpecker ci.
+
+backend infrastructure for the deployment is defined here: [resume-manpage-iac](https://git.bdeshi.space/bdeshi/resume-manpage-iac)
+
 ---
 
 [pug]: https://pugjs.org
