@@ -4,10 +4,10 @@ audio#pronounce(controls=false preload="auto")
   source(src="assets/media/spell.wav" type="audio/wav")
 
 script.
-  function pronounce() {
-    var audio = document.getElementById('pronounce')
-    audio.play()
-  }
+  window.pronounce = function() {
+    var audio = document.getElementById('pronounce');
+    audio.play();
+  };
 
 section.name
   h1.target#name: a(href="#name") name
