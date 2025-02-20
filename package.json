@@ -1,9 +1,12 @@
 {
-  "name": "manpage-html",
+  "name": "resume-manpage",
   "version": "0.0.1",
   "license": "CC-BY-4.0",
+  "source": "index.pug",
   "dependencies": {
-    "@csstools/normalize.css": "^12.0.0",
+    "@csstools/normalize.css": "^12.0.0"
+  },
+  "devDependencies": {
     "@parcel/packager-raw-url": "^2.5.0",
     "@parcel/transformer-pug": "^2.5.0",
     "@parcel/transformer-sass": "^2.5.0",
@@ -11,8 +14,9 @@
     "parcel": "^2.5.0"
   },
   "scripts": {
-    "build": "parcel build index.pug",
-    "serve": "parcel serve index.pug",
-    "watch": "parcel watch index.pug"
+    "prebuild": "rm -rf dist",
+    "build": "parcel build",
+    "serve": "parcel serve",
+    "watch": "parcel watch"
   }
 }
